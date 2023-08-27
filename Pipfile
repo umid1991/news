@@ -6,6 +6,12 @@ name = "pypi"
 [packages]
 django = "*"
 pillow = "*"
+django-hitcount = "*"
+django-modeltranslation = "*"
+python-decouple = "*"
+django-dotenv = "*"
+python-dotenv = "*"
+decouple = "*"
 
 [dev-packages]
 

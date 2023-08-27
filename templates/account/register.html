@@ -1,0 +1,15 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %} Foydalanuvchi  ruyhatdan utkazish{% endblock title %}
+
+{% block content %}
+  <h1>yangi foydalanuvchilarni ruyhatdan utkazish </h1>
+  <h3>Quydagi formani tuldering</h3>
+  <form method="post">{% csrf_token %}
+    {{ user_form.as_p }}
+    <button type="submit"> Ro'yhatdan o'tesh</button>
+
+  </form>
+
+
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %} Foydalanuvchi  malumodlarni uzgarterish{% endblock title %}
+
+{% block content %}
+  <h1> Foydalanuvchi  malumodlarni uzgarterish  </h1>
+  <h3>Sez uzingiz haqengizdagi malumodlar </h3>
+  <form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <button type="submit"> O'garterish  saqlash</button>
+
+  </form>
+
+
+{% endblock content %}

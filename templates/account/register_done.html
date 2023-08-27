@@ -1,0 +1,12 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %} Muvaffaqiyatli Ruyhatdan utdingiz {% endblock title %}
+
+{% block content %}
+  <h1> {{ new_user.first_name }}, tabriklaymiz ro'yhatdan utdingiz </h1>
+  <h3> Muvaffaqiyatli Ruyhatdan utdingiz</h3>
+    <p>Endi saytga kerishingiz mumkin <a href="{% url 'login' %}">login</a> qilshingiz mumkin </p>
+
+
+
+{% endblock content %}

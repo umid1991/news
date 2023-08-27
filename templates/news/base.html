@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load i18n %}
 <html>
 <head>
 <title>{% block title%} {% endblock title %}</title>
@@ -32,11 +32,35 @@
           <div class="header_top_left">
             <ul class="top_nav">
               <li><a href="{% url 'home_page' %} ">Home</a></li>
-              <li><a href="#">About</a></li>
+              <li><a href="#">Biz Haqimizda</a></li>
               <li><a href="{% url 'contact_page' %}">Contact</a></li>
+              {% if user.is_authenticated and user.is_superuser %}
+                <li><a href="{% url 'admin_page' %}">Admin sahifasi</a></li>
+              {% endif %}
+
+              <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to }}">
+                <select name="language">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                            {{ language.name_local }} ({{ language.code }})
+                        </option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Go">
+</form>
             </ul>
           </div>
           <div class="header_top_right">
+            {% if request.user.is_authenticated %}
+            <p><a href="{% url 'logout' %} " style="color: palegoldenrod">Logout</a></p>
+            <p><a href="{% url 'user_profile' %}" style="color: yellow">My profil</a></p>
+            {% else %}
+            <p><a href="{% url 'login' %}" style="color: yellow">Sayitga kerish</a></p>
+            {% endif %}
             <p>{% now "jS F Y H:i" %}</p>
           </div>
         </div>
@@ -62,7 +86,12 @@
           <li><a href="{% url 'technology_news_page' %}">Texnologiya</a></li>
           <li><a href="{% url 'sport_news_page' %}">Sport</a></li>
           <li><a href="{% url 'contact_page' %}">Biz bilab Aloqa</a></li>
-          <li><a href="pages/404.html">404 Page</a></li>
+<!--          <li><a href="pages/404.html">404 Page</a></li>-->
+          <li>
+            <form  method="get" action="{% url 'search_results' %}">
+              <input type="search" name="q" placeholder="Qidiruv..." class="form-control">
+            </form>
+          </li>
         </ul>
       </div>
     </nav>

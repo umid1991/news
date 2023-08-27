@@ -1,0 +1,17 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %} Login sahifasi {% endblock title %}
+
+{% block content %}
+    <h2>Veb sayitga kerish</h2>
+    <p>Formani tuldering</p>
+    <h3>Agar parolni untgan bulsangiz uni <a href="{% url 'password_reset' %}" style="color: red">Teklash</a></h3>
+
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+
+    </form>
+    <h4>ruyhatdan utmagan bulsangi <a href="{% url 'user_register' %}" style="color: red">ro'yhatdan o'tish</a></h4>
+{% endblock content %}
+
