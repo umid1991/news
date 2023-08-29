@@ -12,6 +12,7 @@ python-decouple = "*"
 django-dotenv = "*"
 python-dotenv = "*"
 decouple = "*"
+whitenoise = "*"
 
 [dev-packages]
 
